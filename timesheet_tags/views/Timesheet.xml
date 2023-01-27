@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_timesheet_search_inherit" model="ir.ui.view">
+        <field name="name">timesheet.search.inherited</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="category_id" string="Tags"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_timesheet_tree_inherit" model="ir.ui.view">
+        <field name="name">timesheet.tree.inherited</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='project_id']" position="after">
+                <field name="category_id" widget="many2many_tags" options='{"color_field": "color"}'  groups="timesheet_tags.admin_tags_group"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
